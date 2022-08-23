@@ -1,0 +1,11 @@
+.*-output
+.*-tracery
+.DS_Store
+.env*
+.turbo/
+*.log
+dist/**
+node_modules/
+
+!.env.example
+!**/.gitkeep

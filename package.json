@@ -1,0 +1,38 @@
+{
+  "name": "@strangelovelabs/cosmos-directory-client",
+  "version": "0.0.0",
+  "packageManager": "pnpm@7.9.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "node-client": "pnpm --dir node/client",
+    "node-types": "pnpm --dir node/types",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@grikomsn/style-guide": "latest",
+    "eslint": "^8",
+    "husky": "^8",
+    "lint-staged": "^13",
+    "prettier": "^2",
+    "quicktype": "^15",
+    "tsup": "^6",
+    "turbo": "^1"
+  },
+  "pnpm": {
+    "overrides": {
+      "node-fetch": "npm:node-fetch-native@latest"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": "@grikomsn/style-guide/prettier",
+  "private": true
+}

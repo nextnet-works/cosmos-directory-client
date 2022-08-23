@@ -1,0 +1,10 @@
+{
+  "extends": "@grikomsn/style-guide/tsconfig.json",
+  "compilerOptions": {
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts"]
+}

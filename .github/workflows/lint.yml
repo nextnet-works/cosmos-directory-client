@@ -1,0 +1,20 @@
+name: Lint
+
+on:
+  push:
+    paths:
+      - node/**
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          cache: "pnpm"
+          node-version-file: ".nvmrc"
+      - run: pnpm install
+      - run: pnpm lint

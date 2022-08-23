@@ -1,0 +1,28 @@
+{
+  "name": "cosmos-directory-client",
+  "description": "JavaScript client for fetching cosmos.directory endpoints 🛵",
+  "version": "0.0.2",
+  "author": "Griko Nibras <griko@strangelove.ventures>",
+  "repository": "https://github.com/strangelove-ventures/cosmos-directory-client.git",
+  "homepage": "https://github.com/strangelove-ventures/cosmos-directory-client",
+  "bugs": "https://github.com/strangelove-ventures/cosmos-directory-client/issues",
+  "files": [
+    "dist/*.js",
+    "dist/*.mjs",
+    "dist/*.ts"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint --fix \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "cosmos-directory-types": "0.0.1",
+    "node-fetch-native": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^16"
+  },
+  "license": "MIT"
+}
