@@ -1,9 +1,9 @@
-import { Convert as ChainConvert } from "cosmos-directory-types/chain";
-import { Convert as ChainValidatorsConvert } from "cosmos-directory-types/chain-validators";
-import { Convert as ChainsConvert } from "cosmos-directory-types/chains";
-import { Convert as StatusConvert } from "cosmos-directory-types/status";
-import { Convert as ValidatorConvert } from "cosmos-directory-types/validator";
-import { Convert as ValidatorsConvert } from "cosmos-directory-types/validators";
+import type { DirectoryChain } from "cosmos-directory-types/chain";
+import type { DirectoryChainValidators } from "cosmos-directory-types/chain-validators";
+import type { DirectoryChains } from "cosmos-directory-types/chains";
+import type { DirectoryStatus } from "cosmos-directory-types/status";
+import type { DirectoryValidator } from "cosmos-directory-types/validator";
+import type { DirectoryValidators } from "cosmos-directory-types/validators";
 import $fetch from "node-fetch-native";
 
 export const DEFAULT_PROTOCOL = "https";
@@ -44,38 +44,32 @@ export class DirectoryClient implements DirectoryClientProps {
 
   async fetchChains() {
     const response = await this.fetch(this.chainsEndpoint, this.fetchOpts);
-    const text = await response.text();
-    return ChainsConvert.toDirectoryChains(text);
+    return response.json() as Promise<DirectoryChains>;
   }
 
   async fetchChain(path: string) {
     const response = await this.fetch(`${this.chainsEndpoint}/${encodeURIComponent(path)}`, this.fetchOpts);
-    const text = await response.text();
-    return ChainConvert.toChain(text);
+    return response.json() as Promise<DirectoryChain>;
   }
 
   async fetchStatus() {
     const response = await this.fetch(this.statusEndpoint, this.fetchOpts);
-    const text = await response.text();
-    return StatusConvert.toDirectoryStatus(text);
+    return response.json() as Promise<DirectoryStatus>;
   }
 
   async fetchValidators() {
     const response = await this.fetch(this.validatorsEndpoint, this.fetchOpts);
-    const text = await response.text();
-    return ValidatorConvert.toValidator(text);
+    return response.json() as Promise<DirectoryValidators>;
   }
 
   async fetchValidator(path: string) {
     const response = await this.fetch(`${this.validatorsEndpoint}/${encodeURIComponent(path)}`, this.fetchOpts);
-    const text = await response.text();
-    return ValidatorsConvert.toDirectoryValidators(text);
+    return response.json() as Promise<DirectoryValidator>;
   }
 
   async fetchChainValidators(path: string) {
     const response = await this.fetch(`${this.validatorsEndpoint}/chains/${encodeURIComponent(path)}`, this.fetchOpts);
-    const text = await response.text();
-    return ChainValidatorsConvert.toChainValidators(text);
+    return response.json() as Promise<DirectoryChainValidators>;
   }
 }
 
