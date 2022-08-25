@@ -1,11 +1,13 @@
-.*-output
-.*-tracery
+.*.tracery
 .DS_Store
 .env*
 .turbo/
 *.log
 dist/**
 node_modules/
+samples/*
+tracery/*
 
 !.env.example
 !**/.gitkeep
+!**/Makefile

@@ -1,59 +1,46 @@
-DIRECTORY_PROTOCOL ?= https
-DIRECTORY_DOMAIN ?= cosmos.directory
+MAINNET_DOMAIN ?= cosmos.directory
+TESTNET_DOMAIN ?= testcosmos.directory
 
-CHAINS_ENDPOINT ?= ${DIRECTORY_PROTOCOL}://chains.${DIRECTORY_DOMAIN}
-STATUS_ENDPOINT ?= ${DIRECTORY_PROTOCOL}://status.${DIRECTORY_DOMAIN}
-VALIDATORS_ENDPOINT ?= ${DIRECTORY_PROTOCOL}://validators.${DIRECTORY_DOMAIN}
+QUICKTYPE_ARGS ?= --alphabetize-properties --no-runtime-typecheck --src-lang json
 
 prepare:
 	pnpm install
-	echo "{\"chain\":[\"${CHAINS_ENDPOINT}/\",{\"oneOf\":[$$(curl -fsSL ${CHAINS_ENDPOINT} | jq '.chains[].path | @uri' | tr -d '\n' | sed 's/""/","/g')]}]}" > .chain-tracery
-	echo "{\"validator\":[\"${VALIDATORS_ENDPOINT}/\",{\"oneOf\":[$$(curl -fsSL ${VALIDATORS_ENDPOINT} | jq '.validators[].path | @uri' | tr -d '\n' | sed 's/""/","/g')]}]}" > .validator-tracery
-	echo "{\"chain-validators\":[\"${VALIDATORS_ENDPOINT}/chains/\",{\"oneOf\":[$$(curl -fsSL ${CHAINS_ENDPOINT} | jq '.chains[].path | @uri' | tr -d '\n' | sed 's/""/","/g')]}]}" > .chain-validators-tracery
+	cd samples && $(MAKE) prepare
 
-all: chains chain status validators validator chain-validators
+clean:
+	cd samples && $(MAKE) clean NETWORK=mainnet && $(MAKE) clean NETWORK=testnet
 
-chains:
-	pnpm exec quicktype \
-		--src ${CHAINS_ENDPOINT} \
-		--out node/types/chains.ts \
-		--alphabetize-properties \
-		--top-level DirectoryChains
+all: node
 
-chain:
-	pnpm exec quicktype \
-		--src-urls .chain-tracery \
-		--src-lang json \
-		--out node/types/chain.ts \
-		--alphabetize-properties \
-		--top-level DirectoryChain
+node: samples tracery
+	pnpm quicktype ${QUICKTYPE_ARGS} --src samples/chains/*.json --out node/types/chains.ts --top-level DirectoryChains
+	pnpm quicktype ${QUICKTYPE_ARGS} --src-urls tracery/chain.json --out node/types/chain.ts --top-level DirectoryChain
+	pnpm quicktype ${QUICKTYPE_ARGS} --src samples/status/*.json --out node/types/status.ts --top-level DirectoryStatus
+	pnpm quicktype ${QUICKTYPE_ARGS} --src samples/validators/*.json --out node/types/validators.ts --top-level DirectoryValidators
+	pnpm quicktype ${QUICKTYPE_ARGS} --src-urls tracery/validator.json --out node/types/validator.ts --top-level DirectoryValidator
+	pnpm quicktype ${QUICKTYPE_ARGS} --src-urls tracery/chain-validators.json --out node/types/chain-validators.ts --top-level DirectoryChainValidators
 
-status:
-	pnpm exec quicktype \
-		--src ${STATUS_ENDPOINT} \
-		--out node/types/status.ts \
-		--alphabetize-properties \
-		--top-level DirectoryStatus
+samples: samples/mainnet samples/testnet
 
-validators:
-	pnpm exec quicktype \
-		--src ${VALIDATORS_ENDPOINT} \
-		--out node/types/validators.ts \
-		--alphabetize-properties \
-		--top-level DirectoryValidators
+samples/mainnet:
+	cd samples && $(MAKE) all DOMAIN=${MAINNET_DOMAIN} NETWORK=mainnet
 
-validator:
-	pnpm exec quicktype \
-		--src-urls .validator-tracery \
-		--src-lang json \
-		--out node/types/validator.ts \
-		--alphabetize-properties \
-		--top-level DirectoryValidator
+samples/testnet:
+	cd samples && $(MAKE) all DOMAIN=${TESTNET_DOMAIN} NETWORK=testnet
 
-chain-validators:
-	pnpm exec quicktype \
-		--src-urls .chain-validators-tracery \
-		--src-lang json \
-		--out node/types/chain-validators.ts \
-		--alphabetize-properties \
-		--top-level DirectoryChainValidators
+tracery: tracery/chain.json tracery/validator.json tracery/chain-validators.json
+
+tracery/chain.json: samples
+	cat samples/chains.mainnet.keys | sed "s/^/https:\/\/chains.${MAINNET_DOMAIN}\//" | sed "s/^/\"/" | sed "s/$$/\",/" > $@
+	cat samples/chains.testnet.keys | sed "s/^/https:\/\/chains.${TESTNET_DOMAIN}\//" | sed "s/^/\"/" | sed "s/$$/\",/" >> $@
+	echo "{\"directory-chain\":[{\"oneOf\":[$$(cat $@ | tr -d '\n' | sed "s/,$$//")]}]}" > $@
+
+tracery/validator.json: samples
+	cat samples/validators.mainnet.keys | sed "s/^/https:\/\/validators.${MAINNET_DOMAIN}\//" | sed "s/^/\"/" | sed "s/$$/\",/" > $@
+	cat samples/validators.testnet.keys | sed "s/^/https:\/\/validators.${TESTNET_DOMAIN}\//" | sed "s/^/\"/" | sed "s/$$/\",/" >> $@
+	echo "{\"directory-validator\":[{\"oneOf\":[$$(cat $@ | tr -d '\n' | sed "s/,$$//")]}]}" > $@
+
+tracery/chain-validators.json: samples
+	cat samples/chains.mainnet.keys | sed "s/^/https:\/\/validators.${MAINNET_DOMAIN}\/chains\//" | sed "s/^/\"/" | sed "s/$$/\",/" > $@
+	cat samples/chains.testnet.keys | sed "s/^/https:\/\/validators.${TESTNET_DOMAIN}\/chains\//" | sed "s/^/\"/" | sed "s/$$/\",/" >> $@
+	echo "{\"directory-chain-validators\":[{\"oneOf\":[$$(cat $@ | tr -d '\n' | sed "s/,$$//")]}]}" > $@
