@@ -28,7 +28,7 @@ importers:
   node/client:
     specifiers:
       '@types/node': ^16
-      cosmos-directory-types: 0.0.1
+      cosmos-directory-types: 0.0.3
       node-fetch-native: latest
     dependencies:
       cosmos-directory-types: link:../types
