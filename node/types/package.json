@@ -1,7 +1,7 @@
 {
   "name": "cosmos-directory-types",
   "description": "Generated cosmos.directory TypeScript declarations via quicktype 🌀",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Griko Nibras <griko@strangelove.ventures>",
   "repository": "https://github.com/strangelove-ventures/cosmos-directory-client.git",
   "homepage": "https://github.com/strangelove-ventures/cosmos-directory-client",
