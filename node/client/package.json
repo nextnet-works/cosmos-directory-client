@@ -6,10 +6,14 @@
   "repository": "https://github.com/strangelove-ventures/cosmos-directory-client.git",
   "homepage": "https://github.com/strangelove-ventures/cosmos-directory-client",
   "bugs": "https://github.com/strangelove-ventures/cosmos-directory-client/issues",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist/*.js",
-    "dist/*.mjs",
-    "dist/*.ts"
+    "dist/**/*.js",
+    "dist/**/*.cjs",
+    "dist/**/*.mjs",
+    "dist/**/*.d.ts"
   ],
   "sideEffects": false,
   "scripts": {
