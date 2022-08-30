@@ -4,7 +4,7 @@ import type { DirectoryChains } from "cosmos-directory-types/chains";
 import type { DirectoryStatus } from "cosmos-directory-types/status";
 import type { DirectoryValidator } from "cosmos-directory-types/validator";
 import type { DirectoryValidators } from "cosmos-directory-types/validators";
-import $fetch from "node-fetch-native";
+import { fetch as $fetch } from "node-fetch-native";
 
 export const DEFAULT_PROTOCOL = "https";
 export const DEFAULT_DOMAIN = "cosmos.directory";
@@ -38,7 +38,7 @@ export class DirectoryClient implements DirectoryClientProps {
     this.chainsEndpoint = args.chainsEndpoint || this.chainsEndpoint;
     this.statusEndpoint = args.statusEndpoint || this.statusEndpoint;
     this.validatorsEndpoint = args.validatorsEndpoint || this.validatorsEndpoint;
-    this.fetch = args.fetch || this.fetch;
+    this.fetch = (args.fetch || this.fetch).bind(undefined);
     this.fetchOpts = args.fetchOpts || this.fetchOpts;
   }
 
