@@ -20,11 +20,13 @@
     "prettier": "^2",
     "quicktype": "^15",
     "tsup": "^6",
+    "typescript": "^4",
     "turbo": "^1"
   },
   "pnpm": {
     "overrides": {
-      "node-fetch": "npm:node-fetch-native@latest"
+      "node-fetch": "npm:node-fetch-native@latest",
+      "typescript": "^4"
     }
   },
   "lint-staged": {
