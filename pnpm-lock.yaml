@@ -8,7 +8,7 @@ importers:
 
   .:
     specifiers:
-      '@grikomsn/style-guide': latest
+      '@strangelovelabs/style-guide': latest
       eslint: ^8
       husky: ^8
       lint-staged: ^13
@@ -18,7 +18,7 @@ importers:
       turbo: ^1
       typescript: ^4
     devDependencies:
-      '@grikomsn/style-guide': 0.0.7_er5sflmxjcrgfvrsp3qwdvxste
+      '@strangelovelabs/style-guide': 0.0.1_er5sflmxjcrgfvrsp3qwdvxste
       eslint: 8.23.0
       husky: 8.0.1
       lint-staged: 13.0.3
@@ -119,46 +119,6 @@ packages:
       - supports-color
     dev: true
 
-  /@grikomsn/style-guide/0.0.7_er5sflmxjcrgfvrsp3qwdvxste:
-    resolution: {integrity: sha512-kGnSwHG0v4tynaZXMCQp1iVx7NjnzjQjCqLYv00LcJdGnKWZobjewvNKP7a7wlwwDNFKYpoAS0OmaWyTfzzxUw==}
-    peerDependencies:
-      eslint: ^8
-      prettier: ^2
-      typescript: ^4
-    dependencies:
-      '@babel/eslint-parser': 7.18.9_eslint@8.23.0
-      '@rushstack/eslint-patch': 1.1.4
-      '@typescript-eslint/eslint-plugin': 5.36.0_3g5q5capxpyhialyvs33l4nssm
-      '@typescript-eslint/parser': 5.36.0_yqf6kl63nyoq5megxukfnom5rm
-      eslint: 8.23.0
-      eslint-config-prettier: 8.5.0_eslint@8.23.0
-      eslint-import-resolver-alias: 1.1.2_fkfqfehjtk7sk2efaqbgxsuasa
-      eslint-import-resolver-typescript: 3.5.0_faomjyrlgqmwswvqymymzkxcqi
-      eslint-plugin-eslint-comments: 3.2.0_eslint@8.23.0
-      eslint-plugin-import: 2.26.0_qe7ryljxyho2oyaukbcvccltlq
-      eslint-plugin-jsx-a11y: 6.6.1_eslint@8.23.0
-      eslint-plugin-prettier: 4.2.1_tgumt6uwl2md3n6uqnggd6wvce
-      eslint-plugin-react: 7.31.1_eslint@8.23.0
-      eslint-plugin-react-hooks: 4.6.0_eslint@8.23.0
-      eslint-plugin-simple-import-sort: 7.0.0_eslint@8.23.0
-      eslint-plugin-tsdoc: 0.2.16
-      eslint-plugin-unicorn: 43.0.2_eslint@8.23.0
-      eslint-plugin-unused-imports: 2.0.0_ijohqzf7olguqxo5gdzigrwa64
-      prettier: 2.7.1
-      typescript: 4.8.2
-    optionalDependencies:
-      '@next/eslint-plugin-next': 12.2.5
-      eslint-plugin-jest: 26.9.0_4nvpnjhaa4c3qs7lq6zu7m5doy
-      eslint-plugin-tailwindcss: 3.6.0
-      eslint-plugin-testing-library: 5.6.0_yqf6kl63nyoq5megxukfnom5rm
-    transitivePeerDependencies:
-      - '@babel/core'
-      - eslint-import-resolver-webpack
-      - jest
-      - supports-color
-      - ts-node
-    dev: true
-
   /@humanwhocodes/config-array/0.10.4:
     resolution: {integrity: sha512-mXAIHxZT3Vcpg83opl1wGlVZ9xydbfZO3r5YfRSH6Gpp2J/PfdBP0wbDa2sO6/qRbcalpoevVyW6A/fI6LfeMw==}
     engines: {node: '>=10.10.0'}
@@ -256,6 +216,46 @@ packages:
 
   /@rushstack/eslint-patch/1.1.4:
     resolution: {integrity: sha512-LwzQKA4vzIct1zNZzBmRKI9QuNpLgTQMEjsQLf3BXuGYb3QPTP4Yjf6mkdX+X1mYttZ808QpOwAzZjv28kq7DA==}
+    dev: true
+
+  /@strangelovelabs/style-guide/0.0.1_er5sflmxjcrgfvrsp3qwdvxste:
+    resolution: {integrity: sha512-aIgwyCzPEP/lMAcfroYzbgoKAd6ehSmWcyhUVyhy8Qoeyly2y3cCXxiN/9d0vNz6pOxr6c2MdSpbfxmOFmXfgw==}
+    peerDependencies:
+      eslint: ^8
+      prettier: ^2
+      typescript: ^4
+    dependencies:
+      '@babel/eslint-parser': 7.18.9_eslint@8.23.0
+      '@rushstack/eslint-patch': 1.1.4
+      '@typescript-eslint/eslint-plugin': 5.36.0_3g5q5capxpyhialyvs33l4nssm
+      '@typescript-eslint/parser': 5.36.0_yqf6kl63nyoq5megxukfnom5rm
+      eslint: 8.23.0
+      eslint-config-prettier: 8.5.0_eslint@8.23.0
+      eslint-import-resolver-alias: 1.1.2_fkfqfehjtk7sk2efaqbgxsuasa
+      eslint-import-resolver-typescript: 3.5.0_faomjyrlgqmwswvqymymzkxcqi
+      eslint-plugin-eslint-comments: 3.2.0_eslint@8.23.0
+      eslint-plugin-import: 2.26.0_qe7ryljxyho2oyaukbcvccltlq
+      eslint-plugin-jsx-a11y: 6.6.1_eslint@8.23.0
+      eslint-plugin-prettier: 4.2.1_tgumt6uwl2md3n6uqnggd6wvce
+      eslint-plugin-react: 7.31.1_eslint@8.23.0
+      eslint-plugin-react-hooks: 4.6.0_eslint@8.23.0
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@8.23.0
+      eslint-plugin-tsdoc: 0.2.16
+      eslint-plugin-unicorn: 43.0.2_eslint@8.23.0
+      eslint-plugin-unused-imports: 2.0.0_ijohqzf7olguqxo5gdzigrwa64
+      prettier: 2.7.1
+      typescript: 4.8.2
+    optionalDependencies:
+      '@next/eslint-plugin-next': 12.2.5
+      eslint-plugin-jest: 26.9.0_4nvpnjhaa4c3qs7lq6zu7m5doy
+      eslint-plugin-tailwindcss: 3.6.0
+      eslint-plugin-testing-library: 5.6.0_yqf6kl63nyoq5megxukfnom5rm
+    transitivePeerDependencies:
+      - '@babel/core'
+      - eslint-import-resolver-webpack
+      - jest
+      - supports-color
+      - ts-node
     dev: true
 
   /@types/json-schema/7.0.11:

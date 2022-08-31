@@ -1,5 +1,5 @@
 {
-  "extends": "@grikomsn/style-guide",
+  "extends": "@strangelovelabs/style-guide",
   "exclude": ["node_modules"],
   "include": ["**/*.ts"]
 }
